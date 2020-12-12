@@ -51,7 +51,7 @@ def getInfo(locator):
 
 def checkFile(filename_one, filename_two, filename_three):
     try:
-        if Path(filename_one).exists() and Path(filename_two).exists() and Path(filename_three):
+        if Path(filename_one).exists() and Path(filename_two).exists() and Path(filename_three).exists():
             print('\n{' + filename_one + ' and ' + filename_two + ' and ' +
                   filename_three + '} exists... Proceeding to Data Collection.')
     except IOError:
