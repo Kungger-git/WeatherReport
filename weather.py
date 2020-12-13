@@ -10,14 +10,17 @@ def main():
     name_of_file_three = 'dl_forecast.csv'
     checkFile(name_of_file_one, name_of_file_two, name_of_file_three)
 
-    req = requests.get(
-        'https://weather.com/', timeout=1
-    )
-    req.raise_for_status()
-    page_soup = soup(req.text, 'html.parser')
-    getInfo(page_soup)
-    writeFile(name_of_file_one, name_of_file_two,
-              name_of_file_three, page_soup)
+    try:
+        req = requests.get(
+            'https://weather.com/', timeout=1
+        )
+        req.raise_for_status()
+        page_soup = soup(req.text, 'html.parser')
+        getInfo(page_soup)
+        writeFile(name_of_file_one, name_of_file_two,
+                name_of_file_three, page_soup)
+    except requests.exceptions.HTTPError as err:
+        print('Something went wrong! ', err)
 
 
 def getInfo(locator):
@@ -54,8 +57,8 @@ def checkFile(filename_one, filename_two, filename_three):
         if Path(filename_one).exists() and Path(filename_two).exists() and Path(filename_three).exists():
             print('\n{' + filename_one + ' and ' + filename_two + ' and ' +
                   filename_three + '} exists... Proceeding to Data Collection.')
-    except IOError:
-        print(IOError)
+    except FileNotFoundError as ioerr:
+        print('Directory/File does not exist! ', ioerr)
     
 
 def writeFile(filename_one, filename_two, filename_three, locator):
