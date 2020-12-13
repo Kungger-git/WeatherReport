@@ -56,7 +56,7 @@ def checkFile(filename_one, filename_two, filename_three):
                   filename_three + '} exists... Proceeding to Data Collection.')
     except IOError:
         print(IOError)
-
+    
 
 def writeFile(filename_one, filename_two, filename_three, locator):
     with open(filename_one, 'w') as f:
@@ -70,7 +70,8 @@ def writeFile(filename_one, filename_two, filename_three, locator):
         f.close()
         update1 = pd.read_csv(filename_one)
         pd.set_option('display.max_rows', None)
-        print('Updated Data Frame:\n\nDaily Forecast: \n')
+        section_title = locator.findAll('h2', {'class':'Card--cardHeading--3et4e'})[0]
+        print('Updated Data Frames:\n\n' + section_title.text + ': \n')
         print(update1)
 
     with open(filename_two, 'w') as f:
@@ -95,7 +96,8 @@ def writeFile(filename_one, filename_two, filename_three, locator):
         f.close()
         update2 = pd.read_csv(filename_two)
         pd.set_option('display.max_rows', None)
-        print('\n\nHourly Forecast: \n')
+        section_title = locator.findAll('h2', {'class':'Card--cardHeading--3et4e'})[2]
+        print('\n\n' + section_title.text + ': \n')
         print(update2)
 
     with open(filename_three, 'w') as f:
@@ -126,7 +128,8 @@ def writeFile(filename_one, filename_two, filename_three, locator):
         f.close()
         update3 = pd.read_csv(filename_three)
         pd.set_option('display.max_rows', None)
-        print('\n\nDaily Forecast: \n')
+        section_title = locator.findAll('h2', {'class':'Card--cardHeading--3et4e'})[3]
+        print('\n\n' + section_title.text + ': \n')
         print(update3)
 
 
