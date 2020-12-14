@@ -39,7 +39,7 @@ def getInfo(locator):
     # gets current temp and situation
     for container in locator.findAll('div', {'class': 'CurrentConditions--primary--3xWnK'})[0:]:
         tmp, stn = container.find('span').text, container.find('div').text
-        print('\n\n' + tmp + ' = ' + stn + ' weather')
+        print('\n\n' + tmp + ' = ' + stn)
 
     # gets chance of rain
     for chance in locator.findAll('div', {'data-testid': 'precipPhrase'})[0:]:
