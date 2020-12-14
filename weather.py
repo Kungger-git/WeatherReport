@@ -18,7 +18,7 @@ def main():
         page_soup = soup(req.text, 'html.parser')
         getInfo(page_soup)
         writeFile(name_of_file_one, name_of_file_two,
-                name_of_file_three, page_soup)
+                  name_of_file_three, page_soup)
     except requests.exceptions.HTTPError as err:
         print('Something went wrong! ', err)
 
@@ -59,7 +59,7 @@ def checkFile(filename_one, filename_two, filename_three):
                   filename_three + '} exists... Proceeding to Data Collection.')
     except FileNotFoundError as ioerr:
         print('Directory/File does not exist! ', ioerr)
-    
+
 
 def writeFile(filename_one, filename_two, filename_three, locator):
     with open(filename_one, 'w') as f:
@@ -73,7 +73,8 @@ def writeFile(filename_one, filename_two, filename_three, locator):
         f.close()
         update1 = pd.read_csv(filename_one)
         pd.set_option('display.max_rows', None)
-        section_title = locator.findAll('h2', {'class':'Card--cardHeading--3et4e'})[0]
+        section_title = locator.findAll(
+            'h2', {'class': 'Card--cardHeading--3et4e'})[0]
         print('Updated Data Frames:\n\n' + section_title.text + ': \n')
         print(update1)
 
@@ -99,7 +100,8 @@ def writeFile(filename_one, filename_two, filename_three, locator):
         f.close()
         update2 = pd.read_csv(filename_two)
         pd.set_option('display.max_rows', None)
-        section_title = locator.findAll('h2', {'class':'Card--cardHeading--3et4e'})[2]
+        section_title = locator.findAll(
+            'h2', {'class': 'Card--cardHeading--3et4e'})[2]
         print('\n\n' + section_title.text + ': \n')
         print(update2)
 
@@ -131,7 +133,8 @@ def writeFile(filename_one, filename_two, filename_three, locator):
         f.close()
         update3 = pd.read_csv(filename_three)
         pd.set_option('display.max_rows', None)
-        section_title = locator.findAll('h2', {'class':'Card--cardHeading--3et4e'})[3]
+        section_title = locator.findAll(
+            'h2', {'class': 'Card--cardHeading--3et4e'})[3]
         print('\n\n' + section_title.text + ': \n')
         print(update3)
 
