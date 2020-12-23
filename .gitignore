@@ -1,0 +1,12 @@
+# Mac Files
+.DS_Store
+
+# vscode
+.vscode
+*.code-workspace
+__pycache__
+
+# Generated Files
+dl_forecast.csv
+hr_forecast.csv
+td_forecast.csv
